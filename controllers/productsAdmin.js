@@ -1,7 +1,7 @@
 const Product = require("../models/Product");
 const { StatusCodes } = require("http-status-codes");
 const { NotFoundError } = require("../errors/index");
-const { deleteItem: deleteSingleProduct, create: createProduct } = require("../services/index.js");
+const { deleteItem: deleteSingleProduct, create: createProduct, update: updateSingleProduct } = require("../services/index.js");
 
 const addProduct = async (req, res) => {
   // const product = await Product.create({ ...req.body });
@@ -40,6 +40,8 @@ const updateProduct = async (req, res) => {
   // }
 
   // res.status(StatusCodes.OK).json({ success: true, product });
+
+  await updateSingleProduct(req, res, id, Product);
 };
 
 module.exports = { addProduct, deleteProduct, updateProduct };

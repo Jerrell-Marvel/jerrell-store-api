@@ -1,4 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
+const { NotFoundError } = require("../errors/index");
+
 const update = async (req, res, id, collection) => {
   const product = await collection.findOneAndUpdate(
     { _id: id },
@@ -13,6 +15,6 @@ const update = async (req, res, id, collection) => {
     throw new NotFoundError(`No product with id ${id}`);
   }
 
-  res.status(StatusCodes.OK).json({ success: true, product });
+  return res.status(StatusCodes.OK).json({ success: true, product });
 };
 module.exports = update;

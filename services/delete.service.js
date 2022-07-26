@@ -1,6 +1,5 @@
-const Product = require("../models/Product");
 const { StatusCodes } = require("http-status-codes");
-const { NotFoundError } = require("../errors/index");
+const { NotFoundError, BadRequestError } = require("../errors/index");
 
 const deleteItem = async (req, res, id, collection) => {
   const product = await collection.findOneAndDelete({ _id: id });
@@ -8,7 +7,17 @@ const deleteItem = async (req, res, id, collection) => {
     throw new NotFoundError(`No product with id ${id}`);
   }
 
-  res.status(StatusCodes.OK).json({ success: true, product });
+  return res.status(StatusCodes.OK).json({ success: true, product });
 };
 
-module.exports = deleteItem;
+const deleteSingleWishlist = async (req, res, collection) => {
+  const { id } = req.params;
+  const { userId } = req.user;
+  const wishlist = await collection.findOneAndDelete({ productId: id, createdBy: userId });
+  if (!wishlist) {
+    throw new NotFoundError("Cannot found wishlist");
+  }
+  return res.status(StatusCodes.OK).json({ success: true, wishlist });
+};
+
+module.exports = { deleteItem, deleteSingleWishlist };

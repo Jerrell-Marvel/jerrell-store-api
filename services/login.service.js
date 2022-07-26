@@ -13,6 +13,7 @@ const login = async (req, res, collection) => {
   }
 
   const isPasswordCorrect = await user.matchPassword(password);
+  console.log(isPasswordCorrect);
 
   if (!isPasswordCorrect) {
     throw new UnauthorizedError("Password incorrect");
@@ -20,7 +21,7 @@ const login = async (req, res, collection) => {
 
   const token = await user.createJWT("user");
 
-  res.status(StatusCodes.OK).json({ username: user.username, token });
+  return res.status(StatusCodes.OK).json({ username: user.username, token });
 };
 
 module.exports = login;
