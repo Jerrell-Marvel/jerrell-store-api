@@ -1,6 +1,4 @@
-const Product = require("../models/Product");
-const { StatusCodes } = require("http-status-codes");
-const { NotFoundError } = require("../errors/index");
+
 const { deleteSingleProduct, createProduct, updateSingleProduct } = require("../services/products.service");
 
 const addProduct = async (req, res) => {

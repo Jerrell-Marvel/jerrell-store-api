@@ -1,6 +1,4 @@
-const Wishlist = require("../models/Wishlist");
-const { StatusCodes } = require("http-status-codes");
-const { BadRequestError, NotFoundError } = require("../errors");
+
 const { deleteSingleWishlist, getAllWishlists, createWishlist } = require("../services/wishlists.service");
 
 const getWishlists = async (req, res) => {

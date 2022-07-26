@@ -1,6 +1,4 @@
 const User = require("../models/User");
-const { StatusCodes } = require("http-status-codes");
-const { BadRequestError, UnauthorizedError } = require("../errors/index");
 const registerUser = require("../services/register.service");
 const loginUser = require("../services/login.service");
 
