@@ -1,13 +1,13 @@
 const Product = require("../models/Product");
 const { StatusCodes } = require("http-status-codes");
 const { NotFoundError } = require("../errors/index");
-const { deleteItem: deleteSingleProduct, create: createProduct, update: updateSingleProduct } = require("../services/index.js");
+const { deleteSingleProduct, createProduct, updateSingleProduct } = require("../services/products.service");
 
 const addProduct = async (req, res) => {
   // const product = await Product.create({ ...req.body });
   // res.status(StatusCodes.OK).json({ success: true, product });
 
-  await createProduct(req, res, Product);
+  await createProduct(req, res);
 };
 
 const deleteProduct = async (req, res) => {
@@ -20,7 +20,7 @@ const deleteProduct = async (req, res) => {
 
   // res.status(StatusCodes.OK).json({ success: true, product });
 
-  await deleteSingleProduct(req, res, id, Product);
+  await deleteSingleProduct(req, res);
 };
 
 const updateProduct = async (req, res) => {
