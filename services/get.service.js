@@ -26,4 +26,6 @@ const getAllWishlists = async (req, res, collection) => {
   res.status(StatusCodes.OK).json({ success: true, wishlists, count: wishlists.length });
 };
 
+
+
 module.exports = { getAllProducts, getSingleProduct, getAllWishlists };
