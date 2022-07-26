@@ -18,6 +18,7 @@ const authRoutes = require("./routes/user");
 const wishlistRoutes = require("./routes/wishlist");
 const productRoutes = require("./routes/product");
 const productAdminRoutes = require("./routes/productAdmin");
+const adminRoutes = require("./routes/admin");
 
 // connect to DB import
 const connectDB = require("./db/connectDB");
@@ -34,6 +35,7 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/wishlist", authentication, wishlistRoutes);
 app.use("/api/v1/products", productRoutes);
 app.use("/api/v1/admin/products", authentication, adminAuthentication, productAdminRoutes);
+app.use("/api/v1/admin/auth", adminRoutes);
 
 // Error handling
 app.use(errorHandler);

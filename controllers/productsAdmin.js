@@ -1,10 +1,6 @@
-
 const { deleteSingleProduct, createProduct, updateSingleProduct } = require("../services/products.service");
 
 const addProduct = async (req, res) => {
-  // const product = await Product.create({ ...req.body });
-  // res.status(StatusCodes.OK).json({ success: true, product });
-
   await createProduct(req, res);
 };
 

@@ -1,8 +1,15 @@
-require("dotenv").config();
+const Admin = require("../models/Admin");
+const { register: registerAdmin, login: loginAdmin } = require("../services/auth.service");
 
-const jwt = require("jsonwebtoken");
-const token = jwt.sign({ username: "admin", email: "admin@gmail.com", role: "admin" }, "+MbPeShVmYq3t6w9z$C&F)J@NcRfTjMn", {
-  expiresIn: "30d",
-});
+const register = async (req, res) => {
+  await registerAdmin(req, res, Admin);
+};
 
-console.log(token);
+const login = async (req, res) => {
+  await loginAdmin(req, res, Admin);
+};
+
+module.exports = {
+  login,
+  register,
+};

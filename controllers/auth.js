@@ -1,6 +1,5 @@
 const User = require("../models/User");
-const registerUser = require("../services/register.service");
-const loginUser = require("../services/login.service");
+const { register: registerUser, login: loginUser } = require("../services/auth.service");
 
 const register = async (req, res) => {
   await registerUser(req, res, User);
