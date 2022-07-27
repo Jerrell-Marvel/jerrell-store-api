@@ -28,6 +28,7 @@ const errorHandler = (err, req, res, next) => {
   }
 
   // return res.json(err);
+  // next(err);
   return res.status(customError.statusCode).json(customError);
 };
 

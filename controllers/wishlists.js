@@ -1,4 +1,3 @@
-
 const { deleteSingleWishlist, getAllWishlists, createWishlist } = require("../services/wishlists.service");
 
 const getWishlists = async (req, res) => {
