@@ -17,7 +17,7 @@ const createWishlist = async (req, res) => {
 const deleteSingleWishlist = async (req, res) => {
   const { id } = req.params;
   const { userId } = req.user;
-  const wishlist = await Wishlist.findOneAndDelete({ productId: id, createdBy: userId });
+  const wishlist = await Wishlist.findOneAndDelete({ _id: id, createdBy: userId });
   if (!wishlist) {
     throw new NotFoundError("Cannot found wishlist");
   }
