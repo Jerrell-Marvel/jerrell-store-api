@@ -44,7 +44,7 @@ app.use(errorHandler);
 app.use(notFound);
 
 // start the server
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   try {
     connectDB(process.env.MONGO_URI);
