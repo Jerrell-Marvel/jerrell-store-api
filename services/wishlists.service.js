@@ -4,7 +4,7 @@ const { NotFoundError } = require("../errors/index");
 
 const getAllWishlists = async (req, res) => {
   const { username, userId } = req.user;
-  const wishlists = await Wishlist.find({ createdBy: userId });
+  const wishlists = await Wishlist.find({ createdBy: userId }).sort({ createdAt: -1 });
   res.status(StatusCodes.OK).json({ success: true, wishlists, count: wishlists.length });
 };
 

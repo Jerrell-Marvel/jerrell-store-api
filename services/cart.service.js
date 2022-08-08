@@ -4,7 +4,7 @@ const { NotFoundError } = require("../errors/index");
 
 const getAllCartItems = async (req, res) => {
   const { username, userId } = req.user;
-  const items = await Cart.find({ createdBy: userId });
+  const items = await Cart.find({ createdBy: userId }).sort({ createdAt: -1 });
   res.status(StatusCodes.OK).json({ success: true, items, count: items.length });
 };
 
@@ -17,11 +17,11 @@ const addToCart = async (req, res) => {
 const deleteFromCart = async (req, res) => {
   const { id } = req.params;
   const { userId } = req.user;
-  const items = await Cart.findOneAndDelete({ _id: id, createdBy: userId });
-  if (!items) {
+  const item = await Cart.findOneAndDelete({ _id: id, createdBy: userId });
+  if (!item) {
     throw new NotFoundError("Cannot found items");
   }
-  return res.status(StatusCodes.OK).json({ success: true, items });
+  return res.status(StatusCodes.OK).json({ success: true, item });
 };
 
 const updateSingleCartItem = async (req, res) => {

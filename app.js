@@ -3,6 +3,8 @@ const app = express();
 // express async errors
 require("express-async-errors");
 
+const apiCall = require("./middleware/apiCall");
+
 // cors
 const cors = require("cors");
 app.use(cors());
@@ -32,12 +34,12 @@ require("dotenv").config();
 app.use(express.json());
 
 // routes and routes auth
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/wishlist", authentication, wishlistRoutes);
-app.use("/api/v1/cart", authentication, cartRoutes);
-app.use("/api/v1/products", productRoutes);
-app.use("/api/v1/admin/products", authentication, adminAuthentication, productAdminRoutes);
-app.use("/api/v1/admin/auth", adminRoutes);
+app.use("/api/v1/auth", apiCall, authRoutes);
+app.use("/api/v1/wishlist", apiCall, authentication, wishlistRoutes);
+app.use("/api/v1/cart", apiCall, authentication, cartRoutes);
+app.use("/api/v1/products", apiCall, productRoutes);
+app.use("/api/v1/admin/products", apiCall, authentication, adminAuthentication, productAdminRoutes);
+app.use("/api/v1/admin/auth", apiCall, adminRoutes);
 
 // Error handling
 app.use(errorHandler);

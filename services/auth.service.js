@@ -10,19 +10,18 @@ const register = async (req, res, collection) => {
 const login = async (req, res, collection) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    throw new BadRequestError("Please provide email and password");
+    throw new BadRequestError("please provide email and password");
   }
   const user = await collection.findOne({ email });
 
   if (!user) {
-    throw new UnauthorizedError("Email is not registered");
+    throw new UnauthorizedError("email is not registered");
   }
 
   const isPasswordCorrect = await user.matchPassword(password);
-  console.log(isPasswordCorrect);
 
   if (!isPasswordCorrect) {
-    throw new UnauthorizedError("Password incorrect");
+    throw new UnauthorizedError("incorrect password");
   }
 
   const token = await user.createJWT();
