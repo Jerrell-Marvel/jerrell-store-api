@@ -25,8 +25,11 @@ const login = async (req, res, collection) => {
   }
 
   const token = await user.createJWT();
+  // .cookie("test", "this is the test cookie", { maxAge: 900000, httpOnly: true, domain: "http://localhost:3000" })
 
-  return res.status(StatusCodes.OK).json({ username: user.username, token });
+  return res.status(StatusCodes.OK).cookie("token", token, { sameSite: "none", secure: true }).send();
+
+  // return res.status(StatusCodes.OK).cookie("test", "this is the test cookie", { maxAge: 900000, domain: "http://localhost:3000" }).json({ username: user.username, token });
 };
 
 module.exports = { login, register };

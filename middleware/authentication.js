@@ -3,6 +3,7 @@ const { BadRequestError, UnauthorizedError } = require("../errors/index");
 const jwt = require("jsonwebtoken");
 
 const authentication = async (req, res, next) => {
+  console.log(req.cookies);
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer")) {

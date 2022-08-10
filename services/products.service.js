@@ -3,12 +3,16 @@ const { StatusCodes } = require("http-status-codes");
 const { NotFoundError } = require("../errors/index");
 
 const getAllProducts = async (req, res) => {
-  const { category, sort } = req.query;
+  const { category, sort, search } = req.query;
 
   let queryObject = {};
 
   if (category) {
     queryObject.category = category;
+  }
+
+  if (search) {
+    queryObject.name = { $regex: search, $options: "i" };
   }
 
   let results = Product.find(queryObject);
@@ -45,7 +49,7 @@ const getSingleProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  const product = await Product.create({ ...req.body });
+  const product = await Product.create({ ...req.body, img: req.file.filename });
   return res.status(StatusCodes.OK).json({ success: true, product });
 };
 
