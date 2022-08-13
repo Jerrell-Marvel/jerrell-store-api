@@ -26,7 +26,7 @@ const ProductSchema = new mongoose.Schema(
       type: String,
       required: [true, "Please provide price"],
     },
-    img: {
+    image: {
       type: String,
       default: "placeholder.jpg",
     },

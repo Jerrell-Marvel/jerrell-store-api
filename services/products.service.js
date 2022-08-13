@@ -49,7 +49,7 @@ const getSingleProduct = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
-  const product = await Product.create({ ...req.body, img: req.file.filename });
+  const product = await Product.create({ ...req.body, image: req.file.filename });
   return res.status(StatusCodes.OK).json({ success: true, product });
 };
 
