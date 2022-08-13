@@ -4,7 +4,12 @@ const jwt = require("jsonwebtoken");
 
 const authentication = async (req, res, next) => {
   console.log(req.cookies);
-  const authHeader = req.headers.authorization;
+
+  const { token } = req.cookies;
+
+  if (!token) {
+    throw new UnauthorizedError("Invalid authentication");
+  }
 
   try {
     const payload = jwt.verify(token, process.env.JWT_SECRET);
