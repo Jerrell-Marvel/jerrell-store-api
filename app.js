@@ -52,7 +52,8 @@ app.use("/api/v1/auth", apiCall, authRoutes);
 app.use("/api/v1/wishlist", apiCall, authentication, wishlistRoutes);
 app.use("/api/v1/cart", apiCall, authentication, cartRoutes);
 app.use("/api/v1/products", apiCall, productRoutes);
-app.use("/api/v1/admin/products", apiCall, authentication, adminAuthentication, productAdminRoutes);
+// app.use("/api/v1/admin/products", apiCall, authentication, adminAuthentication, productAdminRoutes);
+app.use("/api/v1/admin/products", apiCall, productAdminRoutes);
 app.use("/api/v1/admin/auth", apiCall, adminRoutes);
 
 // Error handling
